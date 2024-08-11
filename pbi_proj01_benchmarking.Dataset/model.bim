@@ -1,5 +1,5 @@
 {
-  "compatibilityLevel": 1550,
+  "compatibilityLevel": 1567,
   "model": {
     "annotations": [
       {
@@ -38,6 +38,16 @@
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "6e38c169-32f4-4827-8051-080a9a47a8ed",
+        "fromColumn": "Date Taken (America/New_York)",
+        "fromTable": "Data Professional Survey",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_d9f3621e-8bf1-459a-baba-864c9af365e3"
+      }
+    ],
     "sourceQueryCulture": "en-NL",
     "tables": [
       {
@@ -59,12 +69,21 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
               }
             ],
-            "dataType": "string",
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "double",
             "lineageTag": "36678b49-633a-41ea-8ccf-841aca11a381",
             "sourceColumn": "Average Salary",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "Date Taken (America/New_York)",
@@ -72,12 +91,28 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
               }
             ],
-            "dataType": "string",
+            "dataType": "dateTime",
+            "formatString": "Long Date",
             "lineageTag": "be1111b2-16a0-4d2f-8df4-9ddf190e93b6",
             "sourceColumn": "Date Taken (America/New_York)",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Hierarquia de datas",
+                  "table": "LocalDateTable_d9f3621e-8bf1-459a-baba-864c9af365e3"
+                },
+                "isDefault": true,
+                "relationship": "6e38c169-32f4-4827-8051-080a9a47a8ed"
+              }
+            ]
           },
           {
             "name": "Email",
@@ -113,10 +148,16 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "string",
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
             "lineageTag": "c2fd462b-6c14-44f8-a131-9a75ba70a1c0",
             "sourceColumn": "Q10 - Current Age",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "Q11 - Which Country do you live in?.1",
@@ -184,7 +225,7 @@
             "summarizeBy": "none"
           },
           {
-            "name": "Q5 - Favorite Programming Language",
+            "name": "Q5 - Favorite Programming Language.1",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -192,8 +233,8 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "36f37bf1-8ab3-4601-9650-f199058ace6d",
-            "sourceColumn": "Q5 - Favorite Programming Language",
+            "lineageTag": "b13015ed-1f26-4133-a253-f7e250989d87",
+            "sourceColumn": "Q5 - Favorite Programming Language.1",
             "summarizeBy": "none"
           },
           {
@@ -401,9 +442,14 @@
                 "    #\"Replaced Value2\" = Table.ReplaceValue(#\"Replaced Value1\",null,\"225\",Replacer.ReplaceValue,{\"Q3 - Current Yearly Salary (in USD).2\"}),",
                 "    #\"Changed Type8\" = Table.TransformColumnTypes(#\"Replaced Value2\",{{\"Q3 - Current Yearly Salary (in USD).1\", Int64.Type}, {\"Q3 - Current Yearly Salary (in USD).2\", Int64.Type}}),",
                 "    #\"Added Custom\" = Table.AddColumn(#\"Changed Type8\", \"Average Salary\", each ([#\"Q3 - Current Yearly Salary (in USD).1\"]+[#\"Q3 - Current Yearly Salary (in USD).2\"])/2),",
-                "    #\"Removed Columns6\" = Table.RemoveColumns(#\"Added Custom\",{\"Q3 - Current Yearly Salary (in USD).1\", \"Q3 - Current Yearly Salary (in USD).2\"})",
+                "    #\"Removed Columns6\" = Table.RemoveColumns(#\"Added Custom\",{\"Q3 - Current Yearly Salary (in USD).1\", \"Q3 - Current Yearly Salary (in USD).2\"}),",
+                "    #\"Changed Type with Locale\" = Table.TransformColumnTypes(#\"Removed Columns6\", {{\"Date Taken (America/New_York)\", type date}}, \"en-US\"),",
+                "    #\"Split Column by Delimiter6\" = Table.SplitColumn(#\"Changed Type with Locale\", \"Q5 - Favorite Programming Language\", Splitter.SplitTextByEachDelimiter({\":\"}, QuoteStyle.Csv, false), {\"Q5 - Favorite Programming Language.1\", \"Q5 - Favorite Programming Language.2\"}),",
+                "    #\"Changed Type9\" = Table.TransformColumnTypes(#\"Split Column by Delimiter6\",{{\"Q5 - Favorite Programming Language.1\", type text}, {\"Q5 - Favorite Programming Language.2\", type text}}),",
+                "    #\"Filtered Rows2\" = Table.SelectRows(#\"Changed Type9\", each true),",
+                "    #\"Removed Columns7\" = Table.RemoveColumns(#\"Filtered Rows2\",{\"Q5 - Favorite Programming Language.2\"})",
                 "in",
-                "    #\"Removed Columns6\""
+                "    #\"Removed Columns7\""
               ],
               "type": "m"
             }
@@ -626,6 +672,219 @@
             }
           }
         ]
+      },
+      {
+        "name": "LocalDateTable_d9f3621e-8bf1-459a-baba-864c9af365e3",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "effb541c-0609-47b2-8a3e-7427162b0d48",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "cba869aa-2926-4ebb-ae8c-3aca631a0c2e",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Dia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "97eb5f1f-536e-4a86-b827-7742eec47444",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "f932d5b7-3767-406f-b20d-147260f507a9",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "3a57c44a-1969-41cc-8b65-c6d621e29eed",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "5eb53c81-d8ba-44ac-ac1a-aa4d0a7cc7bc",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim \" & [QuarterNo]",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "97a6a483-0f57-4a03-bc7e-145730aeb330",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Hierarquia de datas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Ano",
+                "column": "Ano",
+                "lineageTag": "1e376676-1778-4ade-943d-3ea48293c415",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "fecfa9c7-cb81-44f2-8307-e4913677a164",
+                "ordinal": 1
+              },
+              {
+                "name": "Mês",
+                "column": "Mês",
+                "lineageTag": "0f187e0a-b62d-43db-b3c1-10a072547640",
+                "ordinal": 2
+              },
+              {
+                "name": "Dia",
+                "column": "Dia",
+                "lineageTag": "217c5116-9d3b-4075-bd0d-6cdcbcebf63d",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "e59d46e6-a775-4732-9b70-9e02bc8ba189"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "266de460-9cca-4835-889c-ad3a1366cdcb",
+        "partitions": [
+          {
+            "name": "LocalDateTable_d9f3621e-8bf1-459a-baba-864c9af365e3-f3b82caf-9322-4540-9b41-1363eb34b0ea",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Data Professional Survey'[Date Taken (America/New_York)])), 1, 1), Date(Year(MAX('Data Professional Survey'[Date Taken (America/New_York)])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.44\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU04\",\"version\":\"5.45\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "config": "{\"version\":\"5.44\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU04\",\"version\":\"5.45\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -25,7 +25,53 @@
       "filters": "[]",
       "height": 720.00,
       "name": "ReportSection",
-      "visualContainers": [],
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"077e5e9c28f2a8230756\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":122.24108658743634,\"z\":3,\"width\":470.6281833616299,\"height\":358.16638370118847,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"barChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Data Professional Survey.Q1 - Which Title Best Fits your Current Role?.1\",\"active\":true}],\"Y\":[{\"queryRef\":\"Avg(Data Professional Survey.Average Salary)\"}],\"Series\":[{\"queryRef\":\"Data Professional Survey.Q1 - Which Title Best Fits your Current Role?.1\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Data Professional Survey\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Q1 - Which Title Best Fits your Current Role?.1\"},\"Name\":\"Data Professional Survey.Q1 - Which Title Best Fits your Current Role?.1\",\"NativeReferenceName\":\"Job Titles\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Average Salary\"}},\"Function\":1},\"Name\":\"Avg(Data Professional Survey.Average Salary)\",\"NativeReferenceName\":\"Average Salary\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Average Salary\"}},\"Function\":1}}}]},\"columnProperties\":{\"Data Professional Survey.Q1 - Which Title Best Fits your Current Role?.1\":{\"displayName\":\"Job Titles\"},\"Avg(Data Professional Survey.Average Salary)\":{\"displayName\":\"Average Salary\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 358.17,
+          "width": 470.63,
+          "x": 0.00,
+          "y": 122.24,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"49a5db9c5f36c75e070c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1065.9422750424449,\"y\":99.01528013582343,\"z\":2,\"width\":213.9219015280136,\"height\":108.79456706281834,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Data Professional Survey.Q10 - Current Age)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Data Professional Survey\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Q10 - Current Age\"}},\"Function\":1},\"Name\":\"Sum(Data Professional Survey.Q10 - Current Age)\",\"NativeReferenceName\":\"Average Age of Survey Takers\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Q10 - Current Age\"}},\"Function\":1}}}]},\"columnProperties\":{\"Sum(Data Professional Survey.Q10 - Current Age)\":{\"displayName\":\"Average Age of Survey Takers\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 108.79,
+          "width": 213.92,
+          "x": 1065.94,
+          "y": 99.02,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"4d10b70dec36b5232450\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":490.1867572156197,\"z\":4,\"width\":470.6281833616299,\"height\":229.81324278438032,\"tabOrder\":4}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Data Professional Survey.Q5 - Favorite Programming Language.1\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(Data Professional Survey.Q1 - Which Title Best Fits your Current Role?.1)\"}],\"Series\":[{\"queryRef\":\"Data Professional Survey.Q1 - Which Title Best Fits your Current Role?.1\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Data Professional Survey\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Q5 - Favorite Programming Language.1\"},\"Name\":\"Data Professional Survey.Q5 - Favorite Programming Language.1\",\"NativeReferenceName\":\"Q5 - Favorite Programming Language.1\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Q1 - Which Title Best Fits your Current Role?.1\"}},\"Function\":5},\"Name\":\"CountNonNull(Data Professional Survey.Q1 - Which Title Best Fits your Current Role?.1)\",\"NativeReferenceName\":\"Count of Q1 - Which Title Best Fits your Current Role?.1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Q1 - Which Title Best Fits your Current Role?.1\"},\"Name\":\"Data Professional Survey.Q1 - Which Title Best Fits your Current Role?.1\",\"NativeReferenceName\":\"Job Titles\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Q1 - Which Title Best Fits your Current Role?.1\"}},\"Function\":5}}}]},\"columnProperties\":{\"Data Professional Survey.Q1 - Which Title Best Fits your Current Role?.1\":{\"displayName\":\"Job Titles\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"titleText\":{\"expr\":{\"Literal\":{\"Value\":\"'Count of voters'\"}}}}}],\"categoryAxis\":[{\"properties\":{\"titleText\":{\"expr\":{\"Literal\":{\"Value\":\"'Job Titles'\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Preferred Programming Languages'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 229.81,
+          "width": 470.63,
+          "x": 0.00,
+          "y": 490.19,
+          "z": 4.00
+        },
+        {
+          "config": "{\"name\":\"ab7d562622a46b85f567\",\"layouts\":[{\"id\":0,\"position\":{\"x\":852.0203735144313,\"y\":99.01528013582343,\"z\":1,\"width\":213.9219015280136,\"height\":108.79456706281834,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Min(Data Professional Survey.Unique ID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Data Professional Survey\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Unique ID\"}},\"Function\":2},\"Name\":\"Min(Data Professional Survey.Unique ID)\",\"NativeReferenceName\":\"Count of Survey Takers\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Unique ID\"}},\"Function\":2}}}]},\"columnProperties\":{\"Min(Data Professional Survey.Unique ID)\":{\"displayName\":\"Count of Survey Takers\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 108.79,
+          "width": 213.92,
+          "x": 852.02,
+          "y": 99.02,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"ff7564d79898cc2d0166\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.779286926994907,\"y\":0,\"z\":0,\"width\":1271.307300509338,\"height\":61.12054329371817,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Data Professionals Survey Break Down\",\"textStyle\":{\"fontFamily\":\"Verdana\",\"fontSize\":\"32pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]}}}",
+          "filters": "[]",
+          "height": 61.12,
+          "width": 1271.31,
+          "x": 9.78,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
       "width": 1280.00
     }
   ]
